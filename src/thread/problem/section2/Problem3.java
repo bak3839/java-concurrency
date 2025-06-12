@@ -1,5 +1,9 @@
 package thread.problem.section2;
 
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 import static util.MyLogger.log;
 
 /**
@@ -25,3 +29,4 @@ public class Problem3 {
         thread.start();
     }
 }
+
