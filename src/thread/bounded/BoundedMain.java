@@ -9,7 +9,8 @@ import static util.MyLogger.log;
 public class BoundedMain {
     public static void main(String[] args) {
         // 1. BoundedQueue 선택
-        BoundedQueue queue = new BoundedQueueV1(2);
+//        BoundedQueue queue = new BoundedQueueV1(2);
+        BoundedQueue queue = new BoundedQueueV2(2);
 
         // 2. 생산자, 소비자 실행 순서 선택, 반드기 하나만 선택!
 //        producerFirst(queue);
@@ -40,14 +41,6 @@ public class BoundedMain {
         log("== [소비자 먼저 실행] 종료, " + queue.getClass().getSimpleName() + " ==");
     }
 
-    private static void printAllState(BoundedQueue queue, List<Thread> threads) {
-        System.out.println();
-        log("현재 상태 출력, 큐 데이터: " + queue);
-        for (Thread thread : threads) {
-            log(thread.getName() + ": " + thread.getState());
-        }
-    }
-
     private static void startProducer(BoundedQueue queue, List<Thread> threads) {
         System.out.println();
         log("생산자 시작");
@@ -68,6 +61,14 @@ public class BoundedMain {
             threads.add(consumer);
             consumer.start();
             sleep(100);
+        }
+    }
+
+    private static void printAllState(BoundedQueue queue, List<Thread> threads) {
+        System.out.println();
+        log("현재 상태 출력, 큐 데이터: " + queue);
+        for (Thread thread : threads) {
+            log(thread.getName() + ": " + thread.getState());
         }
     }
 }
